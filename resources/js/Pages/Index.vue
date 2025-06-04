@@ -1,5 +1,11 @@
-<script setup></script>
+<script setup>
+import WordBoardComponent from "../GameComponents/WordBoardComponent.vue";
+</script>
 
 <template>
-    <h1>Hello world</h1>
+    <div>
+        <div class="board-container">
+            <WordBoardComponent correctWord="score" :maxAttempts="8" :wordLength="5" />
+        </div>
+    </div>
 </template>
