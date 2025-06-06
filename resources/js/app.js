@@ -1,15 +1,13 @@
-import { createApp, h } from 'vue'
-import { createInertiaApp } from '@inertiajs/vue3'
+import { createInertiaApp } from '@inertiajs/svelte'
+import { mount } from 'svelte'
 import '../css/app.css'
 
 createInertiaApp({
     resolve: name => {
-        const pages = import.meta.glob('./Pages/**/*.vue', { eager: true })
-        return pages[`./Pages/${name}.vue`]
+        const pages = import.meta.glob('./Pages/**/*.svelte', { eager: true })
+        return pages[`./Pages/${name}.svelte`]
     },
-    setup({ el, App, props, plugin }) {
-        createApp({ render: () => h(App, props) })
-            .use(plugin)
-            .mount(el)
+    setup({ el, App, props }) {
+        mount(App, { target: el, props })
     },
 })

@@ -1,11 +1,11 @@
 import { defineConfig } from 'vite';
-import vue from "@vitejs/plugin-vue";
 import laravel from 'laravel-vite-plugin';
+import { svelte } from "@sveltejs/vite-plugin-svelte";
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
     plugins: [
-        vue(),
+        svelte({}),
         laravel({
             input: ['resources/css/app.css'],
             refresh: true,

@@ -15,7 +15,7 @@
         "vite": "^6.2.4"
     },
     "dependencies": {
-        "@inertiajs/vue3": "^2.0.11",
-        "@vitejs/plugin-vue": "^5.2.4"
+        "@inertiajs/svelte": "^2.0.11",
+        "@sveltejs/vite-plugin-svelte": "^5.1.0"
     }
 }
