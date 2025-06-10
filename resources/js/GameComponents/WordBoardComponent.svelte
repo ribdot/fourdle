@@ -10,7 +10,7 @@
             <WordAttemptComponent
                 wordLength={wordBoard.correctWord.length}
                 active={false}
-                word={wordBoard.guessedWords[index].guess}
+                wordAttempt={wordBoard.guessedWords[index]}
             />
         {:else}
             <WordAttemptComponent

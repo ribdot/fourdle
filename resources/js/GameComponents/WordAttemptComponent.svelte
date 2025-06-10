@@ -11,13 +11,16 @@
 
     export let wordLength
     export let active
-    export let word = ""
+    export let wordAttempt = ""
 </script>
 
 <div class={['mx-auto', 'grid', wordLengthClassMap[wordLength], active ? 'bg-red-300' : '']} style="max-width:500px">
-    {#if !active && word}
+    {#if !active && wordAttempt.guess}
         {#each {length: wordLength} as letter, letterIndex}
-            <LetterComponent letter={word[letterIndex]} />
+            <LetterComponent
+                letter={wordAttempt.guess[letterIndex]}
+                bgColorClass={wordAttempt.getWordEvaluationClass(letterIndex)}
+            />
         {/each}
     {:else}
         {#each {length: wordLength} as letter, inputIndex}

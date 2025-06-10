@@ -10,6 +10,15 @@ export default class WordAttempt {
         this.evaluatedLetters = $state([])
     }
 
+    getWordEvaluationClass(index) {
+        const classMap = new Map()
+        classMap.set(WordAttempt.WordEvaluation.DOES_NOT_CONTAIN, 'bg-gray-300')
+        classMap.set(WordAttempt.WordEvaluation.CONTAINS, 'bg-yellow-300')
+        classMap.set(WordAttempt.WordEvaluation.CORRECT_PLACE, 'bg-green-300')
+
+        return classMap.get(this.evaluatedLetters[index].result) ?? ''
+    }
+
     evaluateWord(correctWord) {
         let checkForLetterDupes = []    // TODO: check for dupe letters
         for(let i = 0; i < this.guess.length; i ++) {

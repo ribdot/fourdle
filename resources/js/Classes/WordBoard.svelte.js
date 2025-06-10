@@ -2,7 +2,7 @@ import WordAttempt from "@/Classes/WordAttempt.svelte.js";
 
 export default class WordBoard {
     constructor(correctWord, maxAttempts) {
-        this.correctWord = correctWord
+        this.correctWord = correctWord.toUpperCase()
         this.maxAttempts = maxAttempts
 
         this.wordLength = correctWord.length
