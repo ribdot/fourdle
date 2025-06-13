@@ -45,6 +45,10 @@ class InputManager {
         }
     }
 
+    handleBlur() {
+        this.preventInput = false
+    }
+
     isLetterKey(key) {
         return key.length === 1 && key.toLowerCase().match(/[a-z]/i)
     }

@@ -12,14 +12,20 @@
         inputManager.handleKeyUp(event.key)
     }
 
+    function handleBlur() {
+        inputManager.handleBlur()
+    }
+
     onMount(() => {
         window.addEventListener('keydown', handleKeyDown)
         window.addEventListener('keyup', handleKeyUp)
+        window.addEventListener('blur', handleBlur)
     })
 
     onDestroy(() => {
         window.removeEventListener('keydown', handleKeyDown)
         window.removeEventListener('keyup', handleKeyUp)
+        window.removeEventListener('blur', handleBlur)
     })
 
     let wordBoard = new WordBoard("score", 8)
