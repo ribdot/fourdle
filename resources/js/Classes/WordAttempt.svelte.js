@@ -20,20 +20,41 @@ export default class WordAttempt {
     }
 
     evaluateWord(correctWord) {
-        let checkForLetterDupes = []    // TODO: check for dupe letters
+        // init all letters to DOES_NOT_CONTAIN
         for(let i = 0; i < this.guess.length; i ++) {
             let letter = this.guess[i]
-            let evaluation = {
+            this.evaluatedLetters.push({
                 letter,
                 result: WordAttempt.WordEvaluation.DOES_NOT_CONTAIN
-            }
-            if (correctWord[i] === letter) {
-                evaluation.result = WordAttempt.WordEvaluation.CORRECT_PLACE
-            } else if (correctWord.includes(letter)) {
-                evaluation.result = WordAttempt.WordEvaluation.CONTAINS
-            }
-
-            this.evaluatedLetters.push(evaluation)
+            })
         }
+
+        // prioritize checking for CORRECT_PLACE letters first
+        this.evaluatedLetters.forEach((evaluation, index) => {
+            if (correctWord[index] === evaluation.letter) {
+                this.evaluatedLetters[index].result = WordAttempt.WordEvaluation.CORRECT_PLACE
+            }
+        })
+
+        // set CONTAINS result if applicable
+        this.evaluatedLetters.forEach((evaluation, index) => {
+            let numberOfLetters = this.countNumberOfLetters(correctWord, evaluation.letter)
+            let numberOfCorrectSpots = this.evaluatedLetters.filter((data) => {
+                return data.letter === evaluation.letter
+                    && data.result === WordAttempt.WordEvaluation.CORRECT_PLACE
+            }).length
+            let numberOfWrongSpots = this.evaluatedLetters.filter((data) => {
+                return data.letter === evaluation.letter
+                    && data.result === WordAttempt.WordEvaluation.CONTAINS
+            }).length
+
+            if (numberOfCorrectSpots + numberOfWrongSpots < numberOfLetters) {
+                this.evaluatedLetters[index].result = WordAttempt.WordEvaluation.CONTAINS
+            }
+        })
+    }
+
+    countNumberOfLetters(word, letter) {
+        return word.match(new RegExp(letter, 'g'))?.length ?? 0;
     }
 }

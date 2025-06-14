@@ -28,7 +28,7 @@
         window.removeEventListener('blur', handleBlur)
     })
 
-    let wordBoard = new WordBoard("score", 8)
+    let wordBoard = new WordBoard("scoop", 8)
 </script>
 
 <div>
