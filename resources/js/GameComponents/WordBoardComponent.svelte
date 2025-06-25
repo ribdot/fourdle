@@ -15,7 +15,7 @@
         {:else}
             <WordAttemptComponent
                 wordLength={wordBoard.correctWord.length}
-                active={wordBoard.guessedWords.length === index}
+                active={wordBoard.guessedWords.length === index && !wordBoard.boardSolved}
             />
         {/if}
     {/each}

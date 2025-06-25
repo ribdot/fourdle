@@ -2,6 +2,9 @@ class InputManager {
     static BACKSPACE = Object.freeze({value: 'Backspace'})
     static ENTER = Object.freeze({value: 'Enter'})
 
+    // TODO: define word length else where in app (probably back end eventually)
+    static WORD_LENGTH = Object.freeze({value: 5})
+
     constructor(stringLength) {
         this.stringLength = stringLength
         this.inputString = $state("")
@@ -9,7 +12,7 @@ class InputManager {
         this.preventInput = false
     }
 
-    handleKeyDown(key, wordBoard) {
+    handleKeyDown(key, wordBoards) {
         if (this.preventInput) {
             return
         }
@@ -19,8 +22,8 @@ class InputManager {
                 this.inputString = this.inputString.substring(0, this.inputString.length - 1)
             }
         } else if (key === InputManager.ENTER.value) {
-            if (this.inputString.length >= wordBoard.wordLength) {
-                wordBoard.checkAttempt(this.inputString)
+            if (this.inputString.length >= InputManager.WORD_LENGTH.value) {
+                wordBoards.forEach((wordBoard) => { wordBoard.checkAttempt(this.inputString) })
                 this.inputString = ""
             } else {
                 // TODO: some feedback about not being able to check guess

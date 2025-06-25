@@ -11,15 +11,19 @@ export default class WordBoard {
     }
 
     checkAttempt(guessWord) {
+        if (this.boardSolved) {
+            return;
+        }
+
         let wordAttempt = new WordAttempt(guessWord)
         wordAttempt.evaluateWord(this.correctWord)
         this.guessedWords.push(wordAttempt)
 
         this.boardSolved = guessWord === this.correctWord
         if (this.boardSolved) {
-            console.log('solved!')
+
         } else {
-            
+
         }
 
         return this.boardSolved
