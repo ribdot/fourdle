@@ -32,8 +32,8 @@
     let wordBoards = [
         new WordBoard("scoop", 8),
         new WordBoard("might", 8),
-        // new WordBoard("olive", 8),
-        // new WordBoard("piano", 8),
+        new WordBoard("olive", 8),
+        new WordBoard("piano", 8),
     ]
 </script>
 
@@ -44,5 +44,5 @@
         {/each}
     </div>
 
-    <KeyboardComponent />
+    <KeyboardComponent wordBoards={wordBoards} />
 </div>

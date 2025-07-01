@@ -19,7 +19,7 @@
         {#each {length: wordLength} as letter, letterIndex}
             <LetterComponent
                 letter={wordAttempt.guess[letterIndex]}
-                bgColorClass={wordAttempt.getWordEvaluationClass(letterIndex)}
+                bgColorClass='{wordAttempt.getWordEvaluationClass(letterIndex)}'
             />
         {/each}
     {:else}
